@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react'
 import Welcome from './components/Welcome'
 import Progress from './components/Progress'
+import DropdownMenu from './components/DropdownMenu'
 
 function App () {
   const [didRender, setDidRender] = useState(false)
@@ -45,7 +46,6 @@ async function getCanvasData() {
     for (let i= 0; i < assignmentsData.length; i++){
       let currAssignment = assignmentsData[i]
       let currAssignmentDueDate = new Date(currAssignment.due_at)
-      console.log(currAssignmentDueDate, date)
       if(currAssignmentDueDate < date){
         countDue ++
       }
@@ -56,7 +56,6 @@ async function getCanvasData() {
     setSelf(selfData)
     setAssignments(assignmentsData)
     setCoursePercent(percentPastDue)
-    console.log("self set")
   }
   
 
@@ -67,6 +66,7 @@ async function getCanvasData() {
       <p>Today's date: {date.toLocaleDateString()}</p>
       <p>Your course: {course.name}</p>
       <Progress coursePercent = {coursePercent} />
+      <DropdownMenu />
     </div>
   )
 }
