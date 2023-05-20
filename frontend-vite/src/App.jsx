@@ -8,6 +8,7 @@ function App () {
   const [date, setDate] = useState("")
   const [self, setSelf] = useState({})
   const [course, setCourse] = useState({})
+  const [assignments, setAssignments] = useState({})
 
  // useEffects to run once - at first load
  useEffect(() => {
@@ -15,7 +16,7 @@ function App () {
   if (didRender === false){
 
     getDate()
-    getSelfAndCourses()
+    getCanvasData()
     
     return () => {
       setDidRender(true)
@@ -29,15 +30,21 @@ function getDate(){
   setDate(today)
 }
 
-  async function getSelfAndCourses() {
+async function getCanvasData() {
     const self = await fetch('http://localhost:4001/getSelf')
     const selfData = await self.json()
     const courses = await fetch(`http://localhost:4001/getCoursesByUser/${selfData.id}`)
-    const coursesData = await courses.json()
-    setCourse(coursesData.filter(obj => obj.workflow_state === "available")[0])
+    const allCoursesData = await courses.json()
+    const availableCoursesData = allCoursesData.filter(obj => obj.workflow_state === "available")[0]
+    const assignments = await fetch(`http://localhost:4001/getAssignments/${availableCoursesData.id}`)
+    const assignmentsData = await assignments.json()
+    console.log(assignmentsData)
+    setCourse(availableCoursesData)
     setSelf(selfData)
+    setAssignments(assignmentsData)
     console.log("self set")
   }
+  
 
 
   return (
