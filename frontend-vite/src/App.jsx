@@ -1,7 +1,6 @@
 import React, { useState, useEffect} from 'react'
 import Welcome from './components/Welcome'
-import Discussion from './components/Discussion'
-import './App.css'
+import Progress from './components/Progress'
 
 function App () {
   const [didRender, setDidRender] = useState(false)
@@ -9,6 +8,7 @@ function App () {
   const [self, setSelf] = useState({})
   const [course, setCourse] = useState({})
   const [assignments, setAssignments] = useState({})
+  const [coursePercent, setCoursePercent] = useState(0)
 
  // useEffects to run once - at first load
  useEffect(() => {
@@ -50,12 +50,12 @@ async function getCanvasData() {
         countDue ++
       }
     }
-    const coursePercentage = Math.floor( (countDue/assignmentsData.length) * 100)
-    console.log(coursePercentage)
-    console.log(assignmentsData)
+    const percentPastDue = Math.floor( (countDue/assignmentsData.length) * 100)
+
     setCourse(availableCoursesData)
     setSelf(selfData)
     setAssignments(assignmentsData)
+    setCoursePercent(percentPastDue)
     console.log("self set")
   }
   
@@ -66,7 +66,7 @@ async function getCanvasData() {
       <p>Welcome, {self.name}!</p>
       <p>Today's date: {date.toLocaleDateString()}</p>
       <p>Your course: {course.name}</p>
-      <Discussion />
+      <Progress coursePercent = {coursePercent} />
     </div>
   )
 }
