@@ -5,7 +5,7 @@ import './App.css'
 
 function App () {
   const [didRender, setDidRender] = useState(false)
-  const [date, setDate] = useState("")
+  const [date, setDate] = useState(()=>getDate())
   const [self, setSelf] = useState({})
   const [course, setCourse] = useState({})
   const [assignments, setAssignments] = useState({})
@@ -15,7 +15,6 @@ function App () {
 
   if (didRender === false){
 
-    getDate()
     getCanvasData()
     
     return () => {
@@ -26,8 +25,7 @@ function App () {
 }, [])
 
 function getDate(){
-  const today = new Date().toLocaleDateString()
-  setDate(today)
+  return new Date()
 }
 
 async function getCanvasData() {
@@ -38,6 +36,22 @@ async function getCanvasData() {
     const availableCoursesData = allCoursesData.filter(obj => obj.workflow_state === "available")[0]
     const assignments = await fetch(`http://localhost:4001/getAssignments/${availableCoursesData.id}`)
     const assignmentsData = await assignments.json()
+    
+   //set a countDue variable = 0
+    //loop through assignmentsData
+      //for each assignment, if the due date is before today's date, add one to countDue
+    //divide count due by assignmentsData.length
+    let countDue = 0
+    for (let i= 0; i < assignmentsData.length; i++){
+      let currAssignment = assignmentsData[i]
+      let currAssignmentDueDate = new Date(currAssignment.due_at)
+      console.log(currAssignmentDueDate, date)
+      if(currAssignmentDueDate < date){
+        countDue ++
+      }
+    }
+    const coursePercentage = Math.floor( (countDue/assignmentsData.length) * 100)
+    console.log(coursePercentage)
     console.log(assignmentsData)
     setCourse(availableCoursesData)
     setSelf(selfData)
@@ -50,7 +64,7 @@ async function getCanvasData() {
   return (
     <div className='App'>
       <p>Welcome, {self.name}!</p>
-      <p>Today's date: {date}</p>
+      <p>Today's date: {date.toLocaleDateString()}</p>
       <p>Your course: {course.name}</p>
       <Discussion />
     </div>
