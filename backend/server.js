@@ -37,11 +37,13 @@ app.get('/getAssignments/:id', async (req, res) => {
 })
 
 // Test - bulk user progress
-app.get('/getMultipleAssignmentSubmissions', async (req, res) => {
-  // we need to now make a call to the Canvas API,
-  // wait for the response, then send the result to the frontend
+app.get('/getMultipleAssignmentSubmissions/:id', async (req, res) => {
   //NOTE - requires an option of ?student_ids[]=all
-  const multipleAssignmentSubmissions = await canvasAPI.getMultipleAssignmentSubmissions(6880352)
+  const courseId = req.params.id
+  const options = req.query
+  console.log(courseId)
+  console.log(options)
+  const multipleAssignmentSubmissions = await canvasAPI.getMultipleAssignmentSubmissions(courseId, options)
   res.json(multipleAssignmentSubmissions)
 })
 
