@@ -35,43 +35,46 @@ async function getCanvasData() {
     const courses = await fetch(`http://localhost:4001/getCoursesByUser/${selfData.id}`)
     const allCoursesData = await courses.json()
     const availableCoursesData = allCoursesData.filter(obj => obj.workflow_state === "available")[0]
-    // const assignments = await fetch(`http://localhost:4001/getAssignments/${availableCoursesData.id}`)
-    // const assignmentsData = await assignments.json()
-    const multipleSubmissions = await fetch(`http://localhost:4001/getMultipleAssignmentSubmissions/${availableCoursesData.id}?student_ids[]=all`)
-    console.log(multipleSubmissions.json())
-  //  //set a countDue variable = 0
-  //   //loop through assignmentsData
-  //     //for each assignment, if the due date is before today's date, add one to countDue
-  //   //divide count due by assignmentsData.length
-  //   let countDue = 0
-  //   for (let i= 0; i < assignmentsData.length; i++){
-  //     let currAssignment = assignmentsData[i]
-  //     let currAssignmentDueDate = new Date(currAssignment.due_at)
-  //     if(currAssignmentDueDate < date){
-  //       countDue ++
-  //     }
-  //   }
-  //   const percentPastDue = Math.floor( (countDue/assignmentsData.length) * 100)
+    const assignments = await fetch(`http://localhost:4001/getAssignments/${availableCoursesData.id}`)
+    const assignmentsData = await assignments.json()
+    
+   //set a countDue variable = 0
+    //loop through assignmentsData
+      //for each assignment, if the due date is before today's date, add one to countDue
+    //divide count due by assignmentsData.length
+    let countDue = 0
+    for (let i= 0; i < assignmentsData.length; i++){
+      let currAssignment = assignmentsData[i]
+      let currAssignmentDueDate = new Date(currAssignment.due_at)
+      if(currAssignmentDueDate < date){
+        countDue ++
+      }
+    }
+    const percentPastDue = Math.floor( (countDue/assignmentsData.length) * 100)
 
-  //   setCourse(availableCoursesData)
-  //   setSelf(selfData)
-  //   setAssignments(assignmentsData)
-  //   setCoursePercent(percentPastDue)
+    setCourse(availableCoursesData)
+    setSelf(selfData)
+    setAssignments(assignmentsData)
+    setCoursePercent(percentPastDue)
   }
   
 
 
   return (
     <div className='App'>
-      <h1>hi</h1>
+      <p>Welcome, {self.name}!</p>
+      <p>Today's date: {date.toLocaleDateString()}</p>
+      <p>Your course: {course.name}</p>
+      <Progress 
+        coursePercent = {coursePercent}
+      />
+      <DropdownMenu 
+        course ={course}
+      /> 
     </div>
   )
 }
 
 export default App
 
-/* <p>Welcome, {self.name}!</p>
-      <p>Today's date: {date.toLocaleDateString()}</p>
-      <p>Your course: {course.name}</p>
-      <Progress coursePercent = {coursePercent} />
-      <DropdownMenu /> */
+/* */

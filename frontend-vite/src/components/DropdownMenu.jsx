@@ -1,37 +1,14 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import StudentInfo from "./StudentInfo"
 
-export default function DropdownMenu(){
+export default function DropdownMenu(props){
     const [selectedOption, setSelectedOption] = useState('');
-    const [componentProps, setComponentProps] = useState(null);
-  
+
     function handleOptionChange(event) {
         const selectedValue = event.target.value;
         setSelectedOption(selectedValue);
-        let selectedProps = null
-        // Run corresponding function based on selected option
-        if (selectedValue === 'studentProgress') {
-            selectedProps = getStudentProgress();
-        } else if (selectedValue === 'studentGrades') {
-            selectedProps = getStudentGrades();
-        } 
-        setComponentProps(selectedProps)
     }
-  
-    function getStudentProgress() {
-        // Function logic for option A
-        return {
-            type: 'Student progress goes here',
-        };
-    }
-  
-    function getStudentGrades() {
-        // Function logic for option B
-        return {
-            type: 'Student grades go here',
-        };
-    }
-  
+
     return (
       <div>
         <select value={selectedOption} onChange={handleOptionChange}>
@@ -40,7 +17,12 @@ export default function DropdownMenu(){
           <option value="studentGrades">Student grades</option>
         </select>
   
-        {componentProps && <StudentInfo {...componentProps} />}
+        {selectedOption && 
+            <StudentInfo 
+                course = {props.course} 
+                option={selectedOption} 
+            />
+        }
       </div>
     );
   }

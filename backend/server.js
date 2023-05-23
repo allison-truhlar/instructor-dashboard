@@ -41,8 +41,6 @@ app.get('/getMultipleAssignmentSubmissions/:id', async (req, res) => {
   //NOTE - requires an option of ?student_ids[]=all
   const courseId = req.params.id
   const options = req.query
-  console.log(courseId)
-  console.log(options)
   const multipleAssignmentSubmissions = await canvasAPI.getMultipleAssignmentSubmissions(courseId, options)
   res.json(multipleAssignmentSubmissions)
 })
