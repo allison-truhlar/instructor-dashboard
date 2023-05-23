@@ -17,7 +17,12 @@ export default function StudentInfo(props){
 
     useEffect(()=>{
         if(submissionsData.length>0){
-            getStudentProgress()
+            if(props.option === "studentProgress"){
+                getStudentProgress()
+            } else if (props.option === "studentGrades"){
+                getStudentGrades()
+            }
+            
         }
         
     },[submissionsData])
@@ -45,6 +50,25 @@ export default function StudentInfo(props){
             };
         });
         
+        setStudentInfo(result)
+    }
+
+    function getStudentGrades() {
+        console.log(submissionsData)
+        //First find students with ANY missing submissions
+        const studentsWithLowGrades = submissionsData.filter((student) => {
+            return student.computed_current_score < 75
+        });
+
+        // Create an object with student details 
+        const result = studentsWithLowGrades.map((student) => {
+
+            return {
+                student_id: student.user_id,
+                grade: student.computed_current_score
+            };
+        });
+        console.log(result)
         setStudentInfo(result)
     }
     
