@@ -19,7 +19,8 @@ export default function DropdownMenu(props){
   
         {selectedOption && 
             <StudentInfo 
-                course = {props.course} 
+                course = {props.course}
+                assignments={props.assignments} 
                 option={selectedOption} 
             />
         }

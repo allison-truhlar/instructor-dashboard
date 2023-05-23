@@ -70,6 +70,7 @@ async function getCanvasData() {
       />
       <DropdownMenu 
         course ={course}
+        assignments={assignments}
       /> 
     </div>
   )

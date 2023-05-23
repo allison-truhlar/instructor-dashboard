@@ -30,31 +30,32 @@ export default function StudentInfo(props){
 
     function getStudentProgress() {
         console.log(submissionsData)
-        //First find students with ANY missing submissions
-        const studentsWithMissingAssignments = submissionsData.filter((student) => {
-            const missingAssignments = student.submissions.filter(
-                (assignment) => assignment.missing === true
-            );
-            return missingAssignments.length > 0;
-        });
+        const result = submissionsData
+            .filter((student) => student.submissions.some((submission) => submission.missing))
+            .map((student) => {
+                const missingAssignments = student.submissions
+                    .filter((submission) => submission.missing)
+                    .map((submission) => {
+                        const assignmentId = submission.assignment_id;
+                        const { name } = props.assignments.find(
+                            (assignmentObj) => assignmentObj.id === assignmentId
+                        );
+                        return name;
+                    });
 
-        // Create an object with student details and only the assignments that are missing
-        const result = studentsWithMissingAssignments.map((student) => {
-            const missingAssignments = student.submissions
-                .filter((assignment) => assignment.missing === true)
-                .map((assignment) => assignment.assignment_id);
-
-            return {
-                student_id: student.user_id,
-                missingAssignments: missingAssignments
-            };
-        });
-        
+                return {
+                    studentId: student.user_id,
+                    missingAssignments,
+                };
+            });
+            console.log(result)
         setStudentInfo(result)
     }
 
+
+
     function getStudentGrades() {
-        console.log(submissionsData)
+        
         //First find students with ANY missing submissions
         const studentsWithLowGrades = submissionsData.filter((student) => {
             return student.computed_current_score < 75
@@ -68,9 +69,18 @@ export default function StudentInfo(props){
                 grade: student.computed_current_score
             };
         });
-        console.log(result)
         setStudentInfo(result)
     }
+
+    // function createStudentEls(){
+    //     if(props.option === "studentProgress"){
+    //         studentInfo.map(student => {
+                
+
+    //             }
+    //         })
+    //     }
+    // }
     
 
     return (
