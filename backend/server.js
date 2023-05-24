@@ -45,13 +45,13 @@ app.get('/getMultipleAssignmentSubmissions/:id', async (req, res) => {
   res.json(multipleAssignmentSubmissions)
 })
 
-
-
 // Make endpoint for getUsers here
-app.get('/getUsers', async (req, res) => {
+app.get('/getUsersInCourse/:id', async (req, res) => {
   // we need to now make a call to the Canvas API,
   // wait for the response, then send the result to the frontend
-  const users = await canvasAPI.getUsersInCourse(6880352)
+  const courseId = req.params.id
+  const options = req.query
+  const users = await canvasAPI.getUsersInCourse(courseId, options)
   res.json(users)
 })
 
