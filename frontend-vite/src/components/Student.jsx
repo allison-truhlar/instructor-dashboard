@@ -4,9 +4,9 @@ export default function Student(props){
     
     let displayText = ""
    
-    if (props.option==="studentProgress"){
+    if (props.option==="progress"){
         displayText = "Missing assignments: "
-    } else if (props.option === "studentGrades"){
+    } else if (props.option === "grades"){
         displayText = "Current grade: "
     }
 
