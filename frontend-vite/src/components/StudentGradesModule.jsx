@@ -4,6 +4,7 @@ import Student from "./Student"
 
 export default function StudentGradesModule(props){
     const [studentGrades, setStudentGrades] = useState({})
+    const [areStudentsShown, setAreStudentsShown] = useState(false)
     let studentEls = {}
 
     useEffect(() => {
@@ -47,11 +48,24 @@ export default function StudentGradesModule(props){
             )
         })
     }
+
+    function toggleStudents(){
+        setAreStudentsShown(!areStudentsShown)
+    }
     
     return (
-        <>
-            <h1>{studentGrades.length > 0 ? studentGrades.length : "Loading"} students need attention</h1>
-            {studentEls.length > 0 && studentEls}
-        </>
+        <div className="module-container">
+            <p className="module-title">Student grades</p>
+            <div className="module-kpi-container">
+                <div className="module-kpi">
+                    {studentGrades.length}
+                </div>
+                <div>
+                    <p className="module-text">{studentGrades.length > 0 ? studentGrades.length : "Loading"} students have grade averages less than 75%</p>
+                    <button onClick={toggleStudents} className="module-text btn-students">{areStudentsShown ? "Hide" : "Show"} students...</button>
+                </div>
+            </div>
+            {areStudentsShown && studentEls.length > 0 && studentEls}
+        </div>
     )
 }

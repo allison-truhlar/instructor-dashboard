@@ -3,6 +3,8 @@ import Welcome from './components/Welcome'
 import CourseProgress from './components/CourseProgress'
 import StudentProgressModule from './components/StudentProgressModule'
 import StudentGradesModule from './components/StudentGradesModule'
+import Loading from "./components/Loading"
+import Course from "./components/Course"
 
 
 function App () {
@@ -60,11 +62,20 @@ async function getCanvasData() {
 
 
   return (
-    <div className='App'>
-      
-      <p>Welcome, {self.name}!</p>
-      <p>Today's date: {date.toLocaleDateString()}</p>
-      <p>Your course: {course.name}</p>
+    <div className='app'>
+
+      {isLoading ? <Loading /> :
+        <>
+          <Welcome
+            self={self}
+            date={date}
+          />
+          <Course
+            course={course}
+          />
+        </>
+      }
+
       <CourseProgress 
         assignments = {assignments}
         date={date}

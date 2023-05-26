@@ -4,22 +4,19 @@ export default function Student(props){
     
     let displayText = ""
    
-    if (props.option==="progress"){
+    if (props.module==="progress"){
         displayText = "Missing assignments: "
-    } else if (props.option === "grades"){
+    } else if (props.module === "grades"){
         displayText = "Current grade: "
     }
 
-    function handleClick(email){
-        window.location.href = `mailto:${email}`
-    }
-
-
     return(
-        <div>
-            <p>{props.name}</p>
-            <span onClick={()=>handleClick(props.email)}>Email</span>
-            <p>{displayText} {props.data}</p>
+        <div className="student-container">
+            <div className="student-contact-container">
+                <p className="module-text">{props.name}</p>
+                <a href={`mailto:${props.email}`} className="module-text">Email</a>
+            </div>
+            <p className="module-text"><span className="bold-text">{displayText}</span> {props.data}</p>
         </div>
     )
 }

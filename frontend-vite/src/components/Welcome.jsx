@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
-function Welcome () {
-  
+function Welcome (props) {
 
   return (
-    <>
-      <p>Welcome, {name}!</p>
-      <p>Today's date: {date}</p>
-      <p>Your course: {course.name}</p>
-    </>
+    <div className="welcome-container module-container">
+      <p className="welcome-greeting">Welcome, {props.self.name}!</p>
+      <p className="welcome-date">Today's date: {props.date.toLocaleDateString()}</p>
+    </div>
   )
 }
 

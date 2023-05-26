@@ -25,16 +25,19 @@ export default function CourseProgress(props){
     },[props.assignments])
     
     return (
-        <div className="progress-bar">
-            
-            <div 
-                className="progress-bar--percent"
-                style = {{width: `${coursePercent}%`}}
-            >
-                <span>{`${coursePercent}%`}</span>
+        <div className="module-container">
+            <p className="module-title">Course progress</p>
+            <div className="progress-bar">
+                <div
+                    className="progress-bar--percent"
+                    style={{ width: `${coursePercent}%` }}
+                >
+                    <span>{`${coursePercent}%`}</span>
+                </div>
             </div>
-            
+            <p className="module-text">{coursePercent}% of assignment due dates have passed</p>
         </div>
+        
             
     )
 }

@@ -1,100 +1,165 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.3px;
+  color: #191919;
+}
+
+/* Flex containers */
+
+.app,
+.module-container,
+.module-kpi{
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.module-kpi-container,
+.student-contact-container{
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* App component ----------------------*/
+.app{
+  max-width: 700px;
+  padding: 2em 0;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-.progress-bar{
-  margin-left: 100px;
-  background: #959595;
-  width: 600px;
-  height: 10px;
+/* Module components ----------------------*/
+.module-container{
+  width: 90%;
   border-radius: 5px;
+  margin: 0 0 1em 0;
+  padding: 0.75em;
+  text-align: center;
+  background: #F1F6F9;
 }
 
-.progress-bar--percent{
-  height: 10px;
+.module-title{
+  font-weight: 700;
+  margin: 0 0 0.75em 0;
+}
+
+.module-text{
+  margin: 0;
+  font-size: 0.75rem;
+}
+
+.module-kpi-container{
+  width: 90%;
+  text-align: left;
+}
+
+.module-kpi{
+  justify-content: center;
+  padding: 0.2em 0.6em;
+  border-radius: 5px;
+  background: #21AC8D;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+
+.btn-students{
+  margin-top: 0.5em;
+  padding:0;
+  border: none;
+  background: #F1F6F9;
+  font-style: italic;
+  color: #007D85;
+}
+
+.btn-students:hover,
+.btn-students:focus{
+  cursor: pointer;
+}
+
+/* Welcome component ----------------------*/
+.welcome-container {
+  padding: 1.5em;
+  background: #1E2531;
+  color: #ffffff;
+}
+
+.welcome-greeting,
+.welcome-date {
+  margin: 0;
+}
+
+.welcome-greeting {
+  margin-bottom: 0.5em;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Course component ----------------------*/
+.course p{
+  margin: 0;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+/* Course progress component ----------------------*/
+.progress-bar {
+  background: #98A19E;  
+  width: 90%;
+  height: 2rem;
+  border-radius: 5px;
+  margin-bottom: 0.75rem;
+}
+
+.progress-bar--percent {
+  height: 2rem;
   border-radius: 5px;
   width: 0%;
-  background: red;
+  background: #007D85;
   transition: width 0.5s ease-in-out;
 }
 
-.progress-bar--percent span{
-  height: 40px;
-  width: 40px;
+.progress-bar--percent span {
+  height: 2.5rem;
+  width: 2.5rem;
   border-radius: 50%;
   background: #fff;
   border: 1px solid black;
   float: right;
-  margin-top: -15px;
-  margin-right: -20px;
+  margin-top: -0.25rem;
+  margin-right: -1.25rem;
+  font-size: 0.85rem;
   color: #333;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Student component */
+.student-container{
+  width: 90%;
+  margin-top: 0.5em;
+  padding-top: 0.5em;
+  border-top: 0.8px solid rgba(106, 118, 114, 0.7);
+  text-align: left;
+  line-height: 1.25;
+}
+
+.student-contact-container{
+  margin-bottom: 0.25em;
+}
+
+.student-contact-container a{
+  text-decoration: none;
+  font-style: italic;
+  color: #007D85;
+}
+
+.bold-text{
+  font-weight: 700;
 }
