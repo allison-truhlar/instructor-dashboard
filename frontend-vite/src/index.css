@@ -11,7 +11,11 @@ body {
 
 /* Flex containers */
 
-.app,
+.app{
+  display: flex;
+}
+
+.all-modules-container,
 .module-container,
 .module-kpi{
   display: flex;
@@ -28,18 +32,27 @@ body {
 
 /* App component ----------------------*/
 .app{
+  min-height: 100vh;
+  /* background: rgb(252, 252, 252); */
+}
+
+.all-modules-container{
+  margin: auto;
+  min-height: 85vh;
   max-width: 700px;
-  padding: 2em 0;
+  padding: 3em 0;
+  justify-content: space-around;
+  gap: 1em;
 }
 
 /* Module components ----------------------*/
 .module-container{
   width: 90%;
   border-radius: 5px;
-  margin: 0 0 1em 0;
-  padding: 0.75em;
+  padding: 1em 0.75em;
   text-align: center;
   background: #F1F6F9;
+  /* border: 2px dashed orange; */
 }
 
 .module-title{

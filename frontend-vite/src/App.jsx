@@ -63,7 +63,7 @@ async function getCanvasData() {
 
   return (
     <div className='app'>
-
+      <div className='all-modules-container'> 
       {isLoading ? <Loading /> :
         <>
           <Welcome
@@ -91,7 +91,7 @@ async function getCanvasData() {
         submissions = {submissions}
         students = {students}
       />
-  
+      </div>
     </div>
   )
 }
