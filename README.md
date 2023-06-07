@@ -4,6 +4,8 @@ This app allows an instructor to connect to the course they are currently teachi
 
 I was inspired to create this app based on my own experience as a an instructor for a large (~300 student) online class over nine semesters. It was difficult to easily visualize which students needed extra help and then directly contact them.
 
+![dashboard](/assets/Instructor-Dashboard.png)
+
 **Problem Statement:** As a lecturer for a large online class, I need to be able to assess my students’ overall learning progress quickly and identify any students with whom I need to check in. 
 
 **Product Solution:** A student learning dashboard that shows me key student learning metrics at a glance.
