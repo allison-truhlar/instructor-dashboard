@@ -63,35 +63,41 @@ async function getCanvasData() {
 
   return (
     <div className='app'>
-      <div className='all-modules-container'> 
+
       {isLoading ? <Loading /> :
-        <>
-          <Welcome
-            self={self}
-            date={date}
-          />
-          <Course
-            course={course}
-          />
-        </>
+        <div className='all-modules-container'>
+
+          <div class="header-modules-container">
+            <Welcome
+              self={self}
+              date={date}
+            />
+
+            <Course
+              course={course}
+            />
+          </div>
+
+          <div className="data-modules-container">
+            <CourseProgress
+              assignments={assignments}
+              date={date}
+            />
+
+            <StudentProgressModule
+              assignments={assignments}
+              submissions={submissions}
+              students={students}
+            />
+            <StudentGradesModule
+              assignments={assignments}
+              submissions={submissions}
+              students={students}
+            />
+          </div>
+
+        </div>
       }
-
-      <CourseProgress 
-        assignments = {assignments}
-        date={date}
-      />
-
-      <StudentProgressModule
-        assignments ={assignments}
-        submissions = {submissions}
-        students = {students}
-      />
-      <StudentGradesModule
-        assignments ={assignments}
-        submissions = {submissions}
-        students = {students}
-      />
-      </div>
     </div>
   )
 }

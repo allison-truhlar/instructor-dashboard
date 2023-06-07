@@ -4,18 +4,21 @@
 
 body {
   margin: 0;
+  background: #f1f6f9;
   font-family: 'Roboto', sans-serif;
   letter-spacing: 0.3px;
   color: #191919;
 }
 
-/* Flex containers */
+/* Flex containers ------------------------*/
 
 .app{
   display: flex;
 }
 
 .all-modules-container,
+.header-modules-container,
+.data-modules-container,
 .module-container,
 .module-kpi{
   display: flex;
@@ -33,7 +36,7 @@ body {
 /* App component ----------------------*/
 .app{
   min-height: 100vh;
-  /* background: rgb(252, 252, 252); */
+  
 }
 
 .all-modules-container{
@@ -41,8 +44,25 @@ body {
   min-height: 85vh;
   max-width: 700px;
   padding: 3em 0;
+  background: #cfd6df;
+  border: none;
+  box-shadow: 1px 1px 5px #98A19E;
+  border-radius: 5px;
   justify-content: space-around;
   gap: 1em;
+}
+
+.header-modules-container,
+.data-modules-container{
+  gap: 1em;
+  width: 100%;
+  /* border: 1px magenta dashed; */
+}
+
+.data-modules-container{
+  overflow-y: auto;
+  /* scrollbar-color: red;
+  scrollbar-width: 1em; */
 }
 
 /* Module components ----------------------*/
@@ -133,7 +153,7 @@ body {
   height: 2rem;
   border-radius: 5px;
   width: 0%;
-  background: #007D85;
+  background: #21AC8D;
   transition: width 0.5s ease-in-out;
 }
 
@@ -153,7 +173,7 @@ body {
   justify-content: center;
 }
 
-/* Student component */
+/* Student component ----------------------*/
 .student-container{
   width: 90%;
   margin-top: 0.5em;
@@ -175,4 +195,26 @@ body {
 
 .bold-text{
   font-weight: 700;
+}
+
+/* Media queries ----------------------*/
+
+/* Tablets */
+@media (min-width: 768px) {
+  .all-modules-container{
+    flex-direction: row;
+    max-height: 80vh;
+
+  }
+
+  .data-modules-container{
+    max-height: 80vh;
+  }
+
+  
+}
+
+/* Laptops and desktops */
+@media (min-width: 1024px) {
+  
 }
