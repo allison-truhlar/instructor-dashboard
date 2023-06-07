@@ -1,4 +1,4 @@
-## Course Instructor Dashboard
+## Instructor Dashboard
 
 This app allows an instructor to connect to the course they are currently teaching on the [Canvas Learning Management System ](https://www.instructure.com/canvas) via the [Canvas API](https://canvas.instructure.com/doc/api/) and view information about how far along the course currently is and what students need attention due to missing assignments or a low grade average. The user can access the student emails from the app. 
 
