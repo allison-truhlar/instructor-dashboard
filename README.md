@@ -55,7 +55,10 @@ These instructions will get you a copy of the project up and running on your loc
 1. You should see the app at http://localhost:5173/
 
 ## Roadmap 🗺️
-
+* [ ] Finish responsive layout for larger screens (the app was created following mobile-first design principles)
+* [ ] Refactor the grades and progress modules to render from the same component, by passing down different props
+* [ ] Improve UX when app is accessing data from the API
+* [ ] Make a log-in feature, so the user does not need to create a local .env file
 
 ## Acknowledgements ✨
 
