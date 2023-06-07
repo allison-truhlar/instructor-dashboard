@@ -15,11 +15,11 @@ I was inspired to create this app based on my own experience as a an instructor 
 1. Open an email to a student I need to check in with
 
 ## Table of Contents
-1. [Getting Started](#%EF%B8%8F-getting-started)
-1. [Code Overview](#-code-overview)
-1. [Acknoledgements](#acknowledgements-)
+1. [Getting Started](#getting-started-)
+1. [Roadmap](#roadmap-)
+1. [Acknowledgements](#acknowledgements-)
 
-## ⚙️ Getting Started
+## Getting Started ⚙️
 These instructions will get you a copy of the project up and running on your local machine for use with your own Canvas API tokens.
 
 ### Prerequisites
@@ -35,7 +35,18 @@ These instructions will get you a copy of the project up and running on your loc
 #### Backend
 1. Navigate into `backend` repo. `cd backend`
 1. Install required dependencies. `npm install`
-1. Start server. `npm start`
+1. Create a `.env` file inside the `backend` folder. 
+1. Copy the snippet below into `.env`. Note - if you use Canvas through a school, replace "Canvas" with the acronym/word for your institution found in the URL path you use to access Canvas. E.g., [canvas.ubc.ca](http://canvas.ubc.ca/). In this case, you would input https://ubc.instructure.com/api/v1
+    ```
+    CANVAS_API_TOKEN=
+    CANVAS_API_DOMAIN=https://canvas.instructure.com/api/v1
+    ```
+1. Generate your Canvas access token by following the instructions found here: https://learninganalytics.ubc.ca/for-students/canvas-api/.
+1. In the `.env`, `CANVAS_API_TOKEN={Paste your token here}`
+1. Save `.env`.
+2. Now, start the server `npm start`.
+
+> Never share your token with anyone. If you think your token may have been exposed (for example, by accidentally posting it to GitHub), delete your token from Canvas right away. Instructions for creating and deleting access tokens as a student are [available on the Canvas Guides](https://community.canvaslms.com/docs/DOC-16005-42121018197).
 
 #### Frontend
 1. Navigate into `frontend-vite` repo. `cd frontend-vite`
@@ -43,16 +54,8 @@ These instructions will get you a copy of the project up and running on your loc
 1. Start frontend application. `npm run dev`
 1. You should see the app at http://localhost:5173/
 
-## 💾 Code Overview
-### Dependencies
-#### Backend
-* [nodejs](https://nodejs.org/en/) - JavaScript runtime.
-* [expressjs](https://expressjs.com/) - A framework for building our server's API endpoints.
-* [cors](https://expressjs.com/en/resources/middleware/cors.html) - A middleware to enable [Cross-Origin Resource Sharing](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing).
-* [node-canvas-api](https://github.com/ubccapico/node-canvas-api) - Easy way to make calls to Canvas API using JavaScript.
+## Roadmap 🗺️
 
-#### Frontend
-* [reactjs](https://reactjs.org/) - JavaScript library for building user interfaces.
 
 ## Acknowledgements ✨
 
