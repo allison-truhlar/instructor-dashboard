@@ -56,13 +56,10 @@ body {
 .data-modules-container{
   gap: 1em;
   width: 100%;
-  /* border: 1px magenta dashed; */
 }
 
 .data-modules-container{
   overflow-y: auto;
-  /* scrollbar-color: red;
-  scrollbar-width: 1em; */
 }
 
 /* Module components ----------------------*/
@@ -72,7 +69,6 @@ body {
   padding: 1em 0.75em;
   text-align: center;
   background: #F1F6F9;
-  /* border: 2px dashed orange; */
 }
 
 .module-title{
@@ -206,15 +202,13 @@ body {
     max-height: 80vh;
 
   }
-
   .data-modules-container{
     max-height: 80vh;
   }
-
   
 }
 
-/* Laptops and desktops */
+/* Laptops and desktops
 @media (min-width: 1024px) {
   
-}
+} */
