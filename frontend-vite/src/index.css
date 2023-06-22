@@ -41,8 +41,8 @@ body {
 
 .all-modules-container{
   margin: auto;
-  min-height: 85vh;
-  max-width: 700px;
+  height: 85vh;
+  width: 85vw;
   padding: 3em 0;
   background: #cfd6df;
   border: none;
@@ -133,7 +133,7 @@ body {
 }
 
 /* Course component ----------------------*/
-.course p{
+.course-title{
   margin: 0;
   font-weight: 500;
   font-size: 1.25rem;

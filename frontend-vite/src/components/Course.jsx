@@ -3,9 +3,9 @@ import React, { useState} from 'react'
 function Course (props) {
 
   return (
-    <div className="module-container course">
-      <p>Your course:</p>
-      <p>{props.course.name}</p>
+    <div className="module-container">
+      <p className="course-title">Your course:</p>
+      <p className="course-title">{props.course.name}</p>
     </div>
   )
 }
