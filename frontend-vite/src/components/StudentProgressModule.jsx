@@ -86,7 +86,7 @@ export default function StudentProgressModule(props){
             <div className="module-kpi-container">
                 <div className="module-kpi">{studentProgress.length}</div>
                 <div>
-                    <p className="module-text">{studentProgress.length > 0 ? studentProgress.length : "Loading"} students have missing assignments</p>
+                    <p className="module-text">{studentProgress.length} students have missing assignments</p>
                     <button onClick={toggleStudents} className="module-text btn-students">{areStudentsShown ? "Hide" : "Show"} students...</button>
                 </div>
             </div>
