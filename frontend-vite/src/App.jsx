@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react'
 import Welcome from './components/Welcome'
 import CourseProgress from './components/CourseProgress'
+import StudentDataModule from './components/StudentDataModule'
 import StudentProgressModule from './components/StudentProgressModule'
 import StudentGradesModule from './components/StudentGradesModule'
 import Loading from "./components/Loading"
