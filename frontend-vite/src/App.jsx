@@ -32,39 +32,37 @@ function getDate(){
 }
 
 async function getCanvasData() {
-    setIsLoading(true) //loading during API calls
-    
-    const selfData = await fetch('http://localhost:4001/getSelf')
-      .then((response)=> response.json())
-   
-    const allCoursesData = await fetch(`http://localhost:4001/getCoursesByUser/${selfData.id}`)
-      .then((response)=> response.json())
-    const availableCoursesData = allCoursesData.filter(obj => obj.workflow_state === "available")[0]
-    
-    const assignmentsData = await fetch(`http://localhost:4001/getAssignments/${availableCoursesData.id}`)
-      .then((response)=> response.json())
+  setIsLoading(true) //loading during API calls
 
-    const submissionsData = await fetch(`http://localhost:4001/getMultipleAssignmentSubmissions/${availableCoursesData.id}?student_ids[]=all&grouped=true&include[]=total_scores`)
-      .then((response)=> response.json())
+  const selfData = await fetch('http://localhost:4001/getSelf')
+    .then((response) => response.json())
 
-    const studentsData = await fetch(`http://localhost:4001/getUsersInCourse/${availableCoursesData.id}?enrollment_type[]=student`)
-      .then((response)=> response.json())
+  const allCoursesData = await fetch(`http://localhost:4001/getCoursesByUser/${selfData.id}`)
+    .then((response) => response.json())
+  const availableCoursesData = allCoursesData.filter(obj => obj.workflow_state === "available")[0]
 
-    setCourse(availableCoursesData)
-    setSelf(selfData)
-    setAssignments(assignmentsData)
-    setSubmissionsData(submissionsData);
-    setStudents(studentsData);
-    
-    setIsLoading(false) //no longer loading
-  }
-  
+  const assignmentsData = await fetch(`http://localhost:4001/getAssignments/${availableCoursesData.id}`)
+    .then((response) => response.json())
 
+  const submissionsData = await fetch(`http://localhost:4001/getMultipleAssignmentSubmissions/${availableCoursesData.id}?student_ids[]=all&grouped=true&include[]=total_scores`)
+    .then((response) => response.json())
 
-  return (
+  const studentsData = await fetch(`http://localhost:4001/getUsersInCourse/${availableCoursesData.id}?enrollment_type[]=student`)
+    .then((response) => response.json())
+
+  setCourse(availableCoursesData)
+  setSelf(selfData)
+  setAssignments(assignmentsData)
+  setSubmissionsData(submissionsData);
+  setStudents(studentsData);
+
+  setIsLoading(false) //no longer loading
+}
+
+ return (
     <div className='app'>
       <div className='all-modules-container'>
-        
+
         {isLoading ? <Loading /> :
           <>
             <div class="header-modules-container">
@@ -84,12 +82,15 @@ async function getCanvasData() {
                 date={date}
               />
 
-              <StudentProgressModule
+              <StudentDataModule
+                type="progress"
                 assignments={assignments}
                 submissions={submissions}
                 students={students}
               />
-              <StudentGradesModule
+
+              <StudentDataModule
+                type="grades"
                 assignments={assignments}
                 submissions={submissions}
                 students={students}
