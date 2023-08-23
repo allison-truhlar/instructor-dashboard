@@ -59,6 +59,7 @@ body {
 }
 
 .data-modules-container{
+  max-height: 90%;
   overflow-y: auto;
 }
 
