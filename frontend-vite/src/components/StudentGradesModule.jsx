@@ -61,7 +61,7 @@ export default function StudentGradesModule(props){
                     {studentGrades.length}
                 </div>
                 <div>
-                    <p className="module-text">{studentGrades.length > 0 ? studentGrades.length : "Loading"} students have grade averages less than 75%</p>
+                    <p className="module-text">{studentGrades.length} students have grade averages less than 75%</p>
                     <button onClick={toggleStudents} className="module-text btn-students">{areStudentsShown ? "Hide" : "Show"} students...</button>
                 </div>
             </div>
