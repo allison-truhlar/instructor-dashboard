@@ -17,3 +17,8 @@ describe("toggle function", ()=>{
         expect(await screen.findByText(/Content/i)).toBeInTheDocument();
     })
 })
+
+//https://lo-victoria.com/vitest-blazing-fast-unit-test-framework
+//https://www.robinwieruch.de/vitest-react-testing-library/
+//https://medium.com/engineered-publicis-sapient/react-testing-techniques-d97e9dd8f081
+//https://eternaldev.com/blog/testing-a-react-application-with-vitest
