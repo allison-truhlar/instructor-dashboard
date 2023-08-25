@@ -4,6 +4,8 @@ import CourseProgress from './components/CourseProgress'
 import StudentDataModule from './components/StudentDataModule'
 import Loading from "./components/Loading"
 import Course from "./components/Course"
+import getStudentProgress from "./utils/getStudentProgress"
+import getStudentGrades from "./utils/getStudentGrades"
 
 
 function App () {
@@ -82,17 +84,21 @@ async function getCanvasData() {
               />
 
               <StudentDataModule
-                type="progress"
+                moduleTitle="Student Progress"
+                kpiText = "students have missing assignments"
                 assignments={assignments}
                 submissions={submissions}
                 students={students}
+                fun={getStudentProgress}
               />
 
               <StudentDataModule
-                type="grades"
+                moduleTitle="Student Grades"
+                kpiText = "students have grade averages less than 75%"
                 assignments={assignments}
                 submissions={submissions}
                 students={students}
+                fun={getStudentGrades}
               />
             </div>
           </>
