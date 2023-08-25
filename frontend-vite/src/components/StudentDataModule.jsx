@@ -1,10 +1,6 @@
 import React from "react"
 import { useState, useEffect } from "react"
 import Student from "./Student"
-import getStudentProgress from "../utils/getStudentProgress"
-import getStudentGrades from "../utils/getStudentGrades"
-import DataModuleTitle from "./DataModuleTitle"
-import DataModuleKpiText from "./DataModuleKpiText"
 
 export default function StudentDataModule(props){
     const [studentData, setStudentData] = useState({})
@@ -13,10 +9,7 @@ export default function StudentDataModule(props){
 
     useEffect(() => {
         if (props.submissions && props.assignments && props.students) {
-            if(props.type === "progress"){
-                setStudentData(getStudentProgress(props.submissions, props.assignments, props.students))
-            } else if (props.type === "grades")
-                setStudentData(getStudentGrades(props.submissions, props.students))
+            setStudentData(props.fun(props.submissions, props.assignments, props.students))
         } 
     }, [props])
 
@@ -25,7 +18,7 @@ export default function StudentDataModule(props){
             return (
                 <Student
                     key = {student.studentId}
-                    module = {props.type}
+                    module = {props.moduleTitle}
                     name = {student.name}
                     email = {student.email}
                     data = {student.data}
@@ -40,14 +33,11 @@ export default function StudentDataModule(props){
     
     return (
         <div className="module-container">
-            <DataModuleTitle type = {props.type}/>
+            <p className="module-title">{props.moduleTitle}</p>
             <div className="module-kpi-container">
                 <div className="module-kpi">{studentData.length}</div>
                 <div>
-                    <DataModuleKpiText 
-                        type = {props.type}
-                        number = {studentData.length}
-                    />
+                    <p className="module-text">{studentData.length} {props.kpiText}</p>
                     <button onClick={toggleStudents} className="module-text btn-students">{areStudentsShown ? "Hide" : "Show"} students...</button>
                 </div>
             </div>
