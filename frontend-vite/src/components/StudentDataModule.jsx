@@ -3,25 +3,20 @@ import { useState, useEffect } from "react"
 import Student from "./Student"
 import getStudentProgress from "../utils/getStudentProgress"
 import getStudentGrades from "../utils/getStudentGrades"
+import DataModuleTitle from "./DataModuleTitle"
+import DataModuleKpiText from "./DataModuleKpiText"
 
 export default function StudentDataModule(props){
     const [studentData, setStudentData] = useState({})
-    // const [studentGrades, setStudentGrades] = useState({})
     const [areStudentsShown, setAreStudentsShown] = useState(false)
-    const [moduleTitle, setModuleTitle] = useState("")
-    const [kpiText, setKpiText] = useState("")
     let studentEls = {}
 
     useEffect(() => {
         if (props.submissions && props.assignments && props.students) {
             if(props.type === "progress"){
                 setStudentData(getStudentProgress(props.submissions, props.assignments, props.students))
-                setModuleTitle("Student Progress")
-                setKpiText(" students have missing assignments")
             } else if (props.type === "grades")
                 setStudentData(getStudentGrades(props.submissions, props.students))
-                setModuleTitle("Student Grades")
-                setKpiText( " students have grade averages less than 75%")
         } 
     }, [props])
 
@@ -45,11 +40,14 @@ export default function StudentDataModule(props){
     
     return (
         <div className="module-container">
-            <p className="module-title">{moduleTitle}</p>
+            <DataModuleTitle type = {props.type}/>
             <div className="module-kpi-container">
                 <div className="module-kpi">{studentData.length}</div>
                 <div>
-                    <p className="module-text">{studentData.length}{kpiText}</p>
+                    <DataModuleKpiText 
+                        type = {props.type}
+                        number = {studentData.length}
+                    />
                     <button onClick={toggleStudents} className="module-text btn-students">{areStudentsShown ? "Hide" : "Show"} students...</button>
                 </div>
             </div>
