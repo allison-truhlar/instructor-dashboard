@@ -64,7 +64,7 @@ async function getCanvasData() {
 
         {isLoading ? <Loading /> :
           <>
-            <div class="header-modules-container">
+            <div className="header-modules-container">
               <Welcome
                 self={self}
                 date={date}
