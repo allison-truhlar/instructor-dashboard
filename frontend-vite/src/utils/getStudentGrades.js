@@ -1,4 +1,4 @@
-export default function getStudentGrades(submissions, students) {
+export default function getStudentGrades(submissions, assignments, students) {
     //First find students with ANY missing submissions
     const studentsWithLowGrades = submissions.filter((student) => {
         return student.computed_current_score < 75
